@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-// TODO: Reemplaza este módulo con la lógica de tu vista principal
+// TODO: Reemplaza este módulo con la lógica de tu vista principal 
 </script>
 
 <template>
     <v-container>
-        <v-row justify="center" class="mt-8">
+        <v-row justify="center" class="mt-8"><!--Sistema GRID/grillas-->
             <v-col cols="12" md="8" class="text-center">
                 <v-icon size="80" color="primary">mdi-rocket-launch</v-icon>
                 <h1 class="text-h4 mt-4">Portal Filiales</h1>
@@ -13,7 +13,7 @@
                 </p>
 
                 <v-divider class="my-6" />
-                <p class="text-body-1 text-medium-emphasis mt-2">
+                <p class="text-body-1 text-medium-emphasis mt-2"><!--Buscar loremp Ipsum para lo demas-->
                 Petróleos Mexicanos y sus Empresas Productivas Subsidiarias, tienen inversiones directas e indirectas en un conjunto de 51 empresas, de las cuales 41 son consideradas como Empresas Filiales. (1).  <br></br>
                 Al clasificarlas por su tipo de participación, 41 empresas son de participación mayoritaria, 3 igualitaria y 7 minoritarias; así mismo, se participa de forma directa en 8 y de manera indirecta en 43.<br></br>
 

@@ -23,3 +23,4 @@ export function useGlobalLoading() {
         stopLoading,
     }
 }
+//un contador???

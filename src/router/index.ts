@@ -44,3 +44,4 @@ const router = createRouter({
 })
 
 export default router
+//aqui le damos las rutas de los archivos/vistas/paginas/contenido que tenemos para la sidebarmenu

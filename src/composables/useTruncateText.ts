@@ -6,3 +6,5 @@ export function useTruncateText() {
 
     return { byChars }
 }
+
+//delimita el largo de un texto

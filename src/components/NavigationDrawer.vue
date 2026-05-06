@@ -16,7 +16,7 @@ interface NavItem {
     children?: NavChild[]
 }
 
-const drawer = defineModel<boolean>('drawer', { required: true })
+const drawer = defineModel<boolean>('drawer', { required: true }) //sidebramenu por array 
 
 const navigationItems: NavItem[] = [
     {
@@ -68,10 +68,10 @@ const navigationItems: NavItem[] = [
             <template v-for="item in navigationItems" :key="item.value">
                 <v-list-item v-if="!item.children" :to="item.path" link :prepend-icon="item.icon">
                     <v-list-item-title class="text-subtitle-2">{{ item.title }}</v-list-item-title>
-                </v-list-item>
+                </v-list-item> <!--lista de items-->
 
                 <v-list-group v-else :value="item.value">
-                    <template #activator="{ props }">
+                    <template #activator="{ props }"><!--ajustes del componete-->
                         <v-list-item v-bind="props" :prepend-icon="item.icon">
                             <v-list-item-title class="text-subtitle-2">
                                 {{ item.title }}
@@ -85,6 +85,7 @@ const navigationItems: NavItem[] = [
                         :to="child.path"
                         link
                     >
+                    <!--Inv como funciona el v-list-group bien -->
                         <v-list-item-title class="text-subtitle-2">
                             {{ child.title }}
                         </v-list-item-title>

@@ -14,7 +14,7 @@
 
                 <v-divider class="my-6" />
                 <p class="text-body-1 text-medium-emphasis mt-2">
-                
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Explicabo, pariatur. Laborum, hic neque consequuntur quod inventore culpa nulla, nemo dolorem minima vel amet, at enim vitae veritatis quibusdam esse expedita.
                 </p>
             </v-col>
         </v-row>

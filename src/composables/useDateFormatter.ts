@@ -12,3 +12,5 @@ export function useDateFormatter() {
 
     return { formatDateTime }
 }
+
+//metodo para dar formato de la fecha actual

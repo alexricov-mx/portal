@@ -37,3 +37,4 @@ export function useApprovalStatus() {
         getApprovalStatusLabel,
     }
 }
+//"METODO" para verificar en que estado se encuntran los datos y asigarle un diseño
