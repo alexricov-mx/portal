@@ -1,7 +1,8 @@
 // aqui separe toda la logica que tenia en los scripts anteriores de la view
 //aqui ser ala conexion en backend
-import { computed, ref } from 'vue'
-import type { FilterGroup, ActiveChip, FiltersState } from '../types/filters' //usamos los tipos d etypes para el filtro "plantillas"
+import { computed, ref, onMounted } from 'vue'
+import type { FilterGroup, ActiveChip, FiltersState } from '../types/Filters' //usamos los tipos d etypes para el filtro "plantillas"
+import { datosDurosPrueba } from '../__tests__/hardCode'
 
 export function useSeguimiento() {
     //chips por grupso
@@ -35,6 +36,29 @@ export function useSeguimiento() {
 
   //que el panel este cerrado al iniciar
   const panelOpen = ref(false)
+  const loading = ref(true)
+
+  //data
+  const { desserts: allDesserts } = datosDurosPrueba();
+
+  //filtro
+  const filteredDesserts = computed(() => {
+  let result = [...allDesserts.value]
+
+  Object.entries(selected.value).forEach(([key, value]) => {
+    if (!value) return
+
+    result = result.filter(item => {
+      if (key === 'tipo') return item.type === value
+      if (key === 'participacion') return item.participation === value
+      if (key === 'actividad') return item.activity === value
+      if (key === 'ln') return item.businessLine === value
+      return true
+    })
+  })
+
+  return result
+})
  
   //dinamismo de las chips, si estans seleciondas 
   const toggleChip = (groupKey: string, chip: string) => {
@@ -66,13 +90,17 @@ export function useSeguimiento() {
   //ref filtrps
   const hasActiveFilters = computed(() => activeChips.value.length > 0)
 
-  // datos ejemplo para la tabla
-  const desserts = ref([
-    { branch: 'Administracion del sistema porutario nacional dos bocas S.A. de C.V', businessLine: 'EP', type: 'Paraestatal', participation: 'Mayoritaria', activity: 'Servicios', date : '13/01/1993'},
-    { branch: 'Administracion del sistema porutario nacional dos bocas S.A. de C.V 1', businessLine: 'Pemex', type: 'No Paraestatal', participation: 'Minoritaria', activity: 'Tenedora', date : '15/01/1993'},
-    { branch: 'Administracion del sistema porutario nacional dos bocas S.A. de C.V 2', businessLine: 'TRI', type: 'Paraestatal', participation: 'Igualitaria', activity: 'Infraestructura', date : '16/01/1993'},
-    { branch: 'Administracion del sistema porutario nacional dos bocas S.A. de C.V 3', businessLine: 'EP', type: 'Paraestatal', participation: 'Mayoritaria', activity: 'Financiera', date : '18/01/1993'}
-])
+  //logica loading de tabla
+
+
+  //simulacion de llsmsda a API
+  onMounted(async () => {
+    loading.value = true
+    await new Promise(resolve => setTimeout(resolve, 500))// promesa para espera de data
+    loading.value = false
+  })
+
+  
 
  //aqui ponemos todo loq ue deben y pueden usar al importar este ccomposable 
   return {
@@ -81,9 +109,11 @@ export function useSeguimiento() {
     panelOpen,
     activeChips,
     hasActiveFilters,
-    desserts,
+    loading,
+    filteredDesserts,
     toggleChip,
     removeChip,
     clearAll,
+    onMounted,
   }
 }

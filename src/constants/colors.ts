@@ -10,3 +10,4 @@ export const STATUS_ICONS: Record<string, string> = {
     // ejemplo: activo: 'mdi-check-circle',
     default: 'mdi-help-circle',
 } as const
+//1867C0 azul

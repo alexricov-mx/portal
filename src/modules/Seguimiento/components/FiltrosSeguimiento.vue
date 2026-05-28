@@ -1,16 +1,23 @@
 <script lang="ts" setup>
-import { useSeguimiento } from '../composables/useSeguimiento'
 
-const {
-  filterGroups,
-  selected,
-  panelOpen,
-  activeChips,
-  hasActiveFilters,
-  toggleChip,
-  removeChip,
-  clearAll,
-} = useSeguimiento()
+  const props = defineProps<{
+    filterGroups: any[]
+    selected: any
+    panelOpen: boolean
+    activeChips: any[]
+    hasActiveFilters: boolean
+    toggleChip: (groupKey: string, chip: string) => void
+    removeChip: (groupKey: string) => void
+    clearAll: () => void
+  }>()
+
+  const emit = defineEmits<{
+  (e: 'update:panelOpen', value: boolean): void
+  }>()
+
+  const togglePanel = () => {
+    emit('update:panelOpen', !props.panelOpen) 
+  }
 </script>
 
 <template>
@@ -18,7 +25,7 @@ const {
     <!-- barra primera vista -->
     <div
       class="filter-bar d-flex align-center pa-3 cursor-pointer"
-      @click="panelOpen = !panelOpen"
+      @click="togglePanel"
     >
       <v-icon class="mr-3 flex-shrink-0" color="grey-darken-2">
         mdi-filter-variant
@@ -129,6 +136,7 @@ const {
 
 
 <!--Siso sin saber donde ponerlos, preguntar si los puedo añadir en la carpeta de constants -->
+<!--Si los puedo agregar ahi pero siento que ya estoy extiendiendo mi codigo sucio asi que los dejare aqui por ahora-->
 <style scoped>
 /* Contenedor principal */
 .filter-card {
