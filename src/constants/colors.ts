@@ -11,3 +11,5 @@ export const STATUS_ICONS: Record<string, string> = {
     default: 'mdi-help-circle',
 } as const
 //1867C0 azul
+//00833E verde
+//424E56 gris

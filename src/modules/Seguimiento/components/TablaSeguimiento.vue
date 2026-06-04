@@ -1,6 +1,7 @@
 <script lang="ts" setup>
-import { blue } from 'vuetify/util/colors';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 
 defineProps<{
   filteredDesserts: any[]
@@ -11,7 +12,9 @@ const emit = defineEmits<{
   (e: 'select', item: any): void
 }>()
 
-const selectRow = (item: any) => emit('select', item)
+const goToDetail = (item: any) => {
+  router.push(`/seguimiento/${encodeURIComponent(item.branch)}`)
+}
 
 </script>
 
@@ -41,7 +44,7 @@ const selectRow = (item: any) => emit('select', item)
 
       <!--tabla-->
       <v-table height="400px" fixed-header striped="even">
-        <thead >
+        <thead>
           <tr>
             <th class="text-left">Nombre de la Filial</th>
             <th class="text-left">Accionista</th>
@@ -56,7 +59,7 @@ const selectRow = (item: any) => emit('select', item)
             v-for="item in filteredDesserts" 
             :key="item.branch"
             class="cursor-pointer"
-            @click="selectRow(item)"
+            @click="goToDetail(item)"
           >
             <td>{{ item.branch }}</td>
             <td><v-chip color="green">{{ item.businessLine }}</v-chip></td>
@@ -77,7 +80,7 @@ tr:hover {
 }
 
 .v-table >>> th {
-  background-color: #1867C0 !important;
+  background-color: #00833E !important;
   color: white !important;
 }
 </style>

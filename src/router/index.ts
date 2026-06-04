@@ -16,6 +16,13 @@ const router = createRouter({
              meta: { title: 'Seguimiento' },
          },
          {
+            path: '/Seguimiento/:branch',
+             name: 'filialDetalles',
+             component: () => import('../modules/Seguimiento/views/FilialDetalles.vue'),
+             meta: { title: 'Detalles' },
+
+         },
+         {
              path: '/acerca-de-nosotros',
              name: 'acerca-de-nosotros',
              component: () => import('../modules/AcercaDeNosotros/views/AcercaDeNosotros.vue'),
