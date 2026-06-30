@@ -10,6 +10,12 @@ export const STATUS_ICONS: Record<string, string> = {
     // ejemplo: activo: 'mdi-check-circle',
     default: 'mdi-help-circle',
 } as const
-//1867C0 azul
-//00833E verde
-//424E56 gris
+
+export const COLORS = {
+    green: '#00833E',
+    blue: '#1867C0',
+    grey: '#424E56',
+    lightGrey: '#F5F5F5',
+    red: '#CE132D',
+    cream: '#FCEEBF'
+} as const

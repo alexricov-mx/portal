@@ -3,6 +3,7 @@ import Header from '@/components/Header.vue'
 import NavigationDrawer from '@/components/NavigationDrawer.vue'
 import { RouterView } from 'vue-router'
 import { ref } from 'vue'
+import ContactoChat from './components/ContactoChat.vue'
 
 const drawer = ref(true) //constante reactiva
 </script>
@@ -16,6 +17,7 @@ const drawer = ref(true) //constante reactiva
         <v-main><!--reserva de espcaio dejando fuera el header y el menu depslegable-->
             <v-container fluid> <!--Contenedor que hace el espacio fluido/responsivo respecto al ancho de la pamtalla-->
                 <RouterView /> <!--cambio de rutas /inicio /nosotros /contacto-->
+                <ContactoChat/> <!-- chat de contacto ne vez del apartado de contacto en el side bar y que sea mas actual-->
             </v-container>
         </v-main>
     </v-layout>

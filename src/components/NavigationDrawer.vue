@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { COLORS } from '@/constants/colors'
+
 // TODO: Define aquí los grupos e ítems de navegación de tu aplicación.
 // Cada ítem puede tener un `path` directo o `children` para crear un grupo desplegable.
 
@@ -29,25 +31,25 @@ const navigationItems: NavItem[] = [
         title: 'Seguimiento',
         value: 'seguimiento',
         path: '/seguimiento',
-        icon: 'mdi-view-dashboard',
+        icon: 'mdi-domain',
     },
     {
         title: 'Acerca de Nosotros',
         value: 'acerca-de-nosotros',
         path: '/acerca-de-nosotros',
-        icon: 'mdi-view-dashboard',
+        icon: 'mdi-account-group',
     },
     {
         title: 'Contacto',
         value: 'contacto',
         path: '/contacto',
-        icon: 'mdi-view-dashboard',
+        icon: 'mdi-message-badge',
     },
     {
         title: 'Sitios de Interés',
         value: 'sitios-interes',
         path: '/sitios-de-interes',
-        icon: 'mdi-view-dashboard',
+        icon: 'mdi-link-variant',
     },
     // Ejemplo de grupo con sub-ítems:
     // {
@@ -66,13 +68,13 @@ const navigationItems: NavItem[] = [
     <v-navigation-drawer :width="284" v-model="drawer" permanent>
         <v-list>
             <template v-for="item in navigationItems" :key="item.value">
-                <v-list-item v-if="!item.children" :to="item.path" link :prepend-icon="item.icon">
+                <v-list-item v-if="!item.children" :to="item.path" link :prepend-icon="item.icon" :color="COLORS.green" active-color="COLORS.green">
                     <v-list-item-title class="text-subtitle-2">{{ item.title }}</v-list-item-title>
                 </v-list-item> <!--lista de items-->
 
                 <v-list-group v-else :value="item.value">
                     <template #activator="{ props }"><!--ajustes del componete-->
-                        <v-list-item v-bind="props" :prepend-icon="item.icon">
+                        <v-list-item v-bind="props" :prepend-icon="item.icon" >
                             <v-list-item-title class="text-subtitle-2">
                                 {{ item.title }}
                             </v-list-item-title>

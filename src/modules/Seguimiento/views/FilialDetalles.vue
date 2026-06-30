@@ -3,6 +3,9 @@ import { useRoute, useRouter } from 'vue-router'
 import { ref, onMounted } from 'vue'
 import { datosDurosPrueba } from '../__tests__/hardCode'   
 import TablaDocFecha from '../components/TablaDocFecha.vue'
+import TablaConsejo from '../components/TablaConsejo.vue'
+import TablaAuditor from '../components/TablaAuditor.vue'
+
 
 const route = useRoute()
 const router = useRouter()
@@ -37,7 +40,7 @@ const scrollToSection = (id: string) => {
       color="#00833E"
       variant="outlined"
       @click="router.go(-1)"
-      class="mb-6"
+      class="mb-4"
     >
       ← Volver a Filiales
     </v-btn>
@@ -49,66 +52,127 @@ const scrollToSection = (id: string) => {
         <v-skeleton-loader v-if="loading" type="card" height="450px" />
 
         <!-- Contenido Principal -->
-        <v-card v-else-if="filial" elevation="2" rounded="lg">
-          <v-card-title class="text-h4 mb-6 px-6 pt-6">
+        <v-container v-else-if="filial" elevation="2" rounded="lg">
+          <v-card-title class="text-h4 mb-4 px-3 pt-2 titulo">
             {{ filial.branch }}
           </v-card-title>
 
           <v-row class="ma-0">
             <!-- indice -->
-            <v-col cols="12" md="3" lg="3" class="border-right">
-              <div class="sticky-top pa-4">
-                <h3 class="text-h6 mb-4">Contendio</h3>
+            <v-col cols="12" md="2" lg="2" class="border-right">
+              <div class="sticky-top">
+                <h3 class="red">Contendio</h3>
                 <v-list density="compact" nav>
-                  <v-list-item @click="scrollToSection('info-general')">
+                  <v-list-item @click="scrollToSection('seccion1')">
                     <v-list-item-title>Filial</v-list-item-title>
                   </v-list-item>
                   
-                  <v-list-item @click="scrollToSection('tablas-relacionadas')">
+                  <v-list-item @click="scrollToSection('seccion4')">
+                    <v-list-item-title>Representante y miembros del consejo</v-list-item-title>
+                  </v-list-item>
+
+                  <v-list-item @click="scrollToSection('seccion5')">
+                    <v-list-item-title>Comisario y Auditor externo</v-list-item-title>
+                  </v-list-item>
+
+                  <v-list-item @click="scrollToSection('seccion6')">
+                    <v-list-item-title>Asambleas de Accionistas</v-list-item-title>
+                  </v-list-item>
+
+                  <v-list-item @click="scrollToSection('seccion7')">
+                    <v-list-item-title>Consejos de Administracion</v-list-item-title>
+                  </v-list-item>
+
+                  <v-list-item @click="scrollToSection('seccion8')">
                     <v-list-item-title>Informes y Reportes</v-list-item-title>
                   </v-list-item>
                 </v-list>
               </div>
             </v-col>
 
-            <v-col cols="12" md="9" lg="9">
+            <v-col cols="12" md="10" lg="10">
               <v-card-text>
                 <!-- seccion 1 info gen -->
-                <div id="info-general">
-                  <v-row dense class="mb-8">
+                <div id="seccion1">
+                  <v-row dense class="mb-9">
                     <v-col cols="12" sm="4">
-                      <strong>Línea de Negocio:</strong> {{ filial.businessLine }}
+                      <strong class="red">Línea de Negocio:</strong> {{ filial.businessLine }}
                     </v-col>
                     <v-col cols="12" sm="4">
-                      <strong>Tipo:</strong> {{ filial.type }}
+                      <strong class="red">Tipo:</strong> {{ filial.type }}
                     </v-col>
                     <v-col cols="12" sm="4">
-                      <strong>Participación:</strong> {{ filial.participation }}
+                      <strong class="red">Participación:</strong> {{ filial.participation }}
                     </v-col>
                     <v-col cols="12" sm="4">
-                      <strong>Actividad:</strong> {{ filial.activity }}
+                      <strong class="red">Actividad:</strong> {{ filial.activity }}
                     </v-col>
                     <v-col cols="12" sm="4">
-                      <strong>Fecha de Constitución:</strong> {{ filial.date }}
+                      <strong class="red">Fecha de Constitución:</strong> {{ filial.date }}
                     </v-col>
                   </v-row>
                 </div>
 
-                <v-divider class="my-8" />
+                <v-divider class="my-9" />
 
-                <!-- seccion 2 tabla -->
-                <div id="tablas-relacionadas">
+                <!--Grafico de dividendos pagados esta sera la seccion 2-->
+
+                <!--Grafico que no se bien que es esta ser ala seccion 3 y se recorrera el num de seccion-->
+
+                <!-- seccion 4 tabla Representante y miemrbos del consejo, cambiar diseño -->
+                <div id="seccion4">
+                  <h3 class="mb-4">Representante y miembros del consejo</h3>
+
+                  <v-card-text>
+                    <TablaConsejo/>
+                  </v-card-text>
+                  
+                </div>
+
+                <!-- seccion 5 tabla  Comisario y Auditor externo, cambiar diseño-->
+                <div id="seccion5">
+                  <h3 class="mb-4">Comisario y Auditor externo</h3>
+
+                  <v-card-text>
+                    <TablaAuditor/>
+                  </v-card-text>
+                  
+                </div>
+                <!-- seccion 6 tabla Asambleas de Accionistas-->
+                <div id="seccion6">
+                  <h3 class="mb-4">Asambleas de Accionistas</h3>
+
+                  <v-card-text>
+                    <TablaDocFecha data-key="dessertDoc1"/>
+                  </v-card-text>
+                  
+                </div>
+                <!-- seccion 7 tabla Consejos de Administradcion-->
+                <div id="seccion7">
+                  <h3 class="mb-4">Consejos de Administracion</h3>
+
+                  <v-card-text>
+                    <TablaDocFecha data-key="dessertDoc2"/>
+                  </v-card-text>
+                  
+                </div>
+
+                <!-- seccion 8 tabla  Infromes y reprotes-->
+                <div id="seccion8">
                   <h3 class="mb-4">Informes y Reportes</h3>
 
                   <v-card-text>
-                    <TablaDocFecha />
+                    <TablaDocFecha data-key="dessertDoc3"/>
                   </v-card-text>
+                  
                 </div>
+
+                <!--Temas relevantes preguntar bien que son y si lo puedo poenr como un pie de pagina-->
 
               </v-card-text>
             </v-col>
           </v-row>
-        </v-card>
+        </v-container>
 
         <!-- no esta -->
         <v-card v-else elevation="2" rounded="lg">
@@ -134,4 +198,25 @@ const scrollToSection = (id: string) => {
 .border-right {
   border-right: 1px solid rgba(0, 0, 0, 0.08);
 }
+
+.v-list-item-title {
+  font-size: 90%;
+}
+.v-card-text {
+  font-size: 90%;
+}
+
+.red {
+  color: #CE132D;
+}
+
+.green {
+  color: #00833E;
+}
+
+.titulo {
+  color: #CE132D;
+  font-family: "Roboto", "Verdana", sans-serif;
+}
+
 </style>

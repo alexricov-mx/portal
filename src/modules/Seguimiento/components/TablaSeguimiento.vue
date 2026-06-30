@@ -43,15 +43,15 @@ const goToDetail = (item: any) => {
       </v-skeleton-loader>
 
       <!--tabla-->
-      <v-table height="400px" fixed-header striped="even">
+      <v-table v-else="loading" height="400px" fixed-header striped="even">
         <thead>
           <tr>
             <th class="text-left">Nombre de la Filial</th>
-            <th class="text-left">Accionista</th>
-            <th class="text-left">Tipo</th>
-            <th class="text-left">Participacion</th>
-            <th class="text-left">Actividad</th>
-            <th class="text-left">F. Consitución</th>
+            <th class="text-center">Accionista</th>
+            <th class="text-center">Tipo</th>
+            <th class="text-center">Participacion</th>
+            <th class="text-center">Actividad</th>
+            <th class="text-center">F. Consitución</th>
           </tr>
         </thead>
         <tbody>
@@ -62,11 +62,11 @@ const goToDetail = (item: any) => {
             @click="goToDetail(item)"
           >
             <td>{{ item.branch }}</td>
-            <td><v-chip color="green">{{ item.businessLine }}</v-chip></td>
-            <td><v-chip color="blue">{{ item.type }}</v-chip></td>
-            <td><v-chip color="green">{{ item.participation }}</v-chip></td>
-            <td><v-chip color="blue">{{ item.activity }}</v-chip></td>
-            <td>{{ item.date }}</td>
+            <td class="text-center"><v-chip class="green">{{ item.businessLine }}</v-chip></td>
+            <td class="text-center"><v-chip class="red">{{ item.type }}</v-chip></td>
+            <td class="text-center"><v-chip class="green">{{ item.participation }}</v-chip></td>
+            <td class="text-center"><v-chip class="red">{{ item.activity }}</v-chip></td>
+            <td class="text-center">{{ item.date }}</td>
           </tr>
         </tbody>
       </v-table>
@@ -82,5 +82,13 @@ tr:hover {
 .v-table >>> th {
   background-color: #00833E !important;
   color: white !important;
+}
+
+.red {
+  color: #CE132D;
+}
+
+.green {
+  color: #00833E;
 }
 </style>

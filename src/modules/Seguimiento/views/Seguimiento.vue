@@ -30,7 +30,7 @@ const handleSelect = (item: any) => {
   <v-container>
     <v-row justify="center" class="mt-8">
       <v-col cols="14" md="11">
-        <h1 class="text-h4 mb-6 text-center">Módulo de seguimiento</h1>
+        <h1 class="text-h4 mb-6 text-center titulo" >Módulo de seguimiento</h1>
 
         <SeguimientoFilters 
           :filterGroups="filterGroups"
@@ -55,3 +55,9 @@ const handleSelect = (item: any) => {
   </v-container>
 </template>
 
+<style scoped>
+.titulo {
+  color: #CE132D;
+  font-family: "Roboto", "Verdana", sans-serif;
+}
+</style>

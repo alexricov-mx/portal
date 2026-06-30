@@ -48,7 +48,7 @@
         <v-chip
           v-for="item in activeChips"
           :key="`${item.groupKey}-${item.chip}`"
-          color="primary"
+          color="#00833E"
           variant="elevated"
           size="small"
           closable
@@ -104,7 +104,7 @@
                 <v-chip
                   v-for="chip in group.chips"
                   :key="chip"
-                  color="primary"
+                  color="#00833E"
                   :variant="selected[group.key] === chip ? 'elevated' : 'tonal'"
                   size="default"
                   class="chip-option"
@@ -115,7 +115,7 @@
                     <v-icon
                       size="16"
                       class="ml-1"
-                      :color="selected[group.key] === chip ? 'white' : 'primary'"
+                      :color="selected[group.key] === chip ? 'white' : '#00833E'"
                     >
                       {{
                         selected[group.key] === chip

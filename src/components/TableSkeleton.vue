@@ -23,3 +23,4 @@ defineProps<{
         </tbody>
     </v-table>
 </template>
+<!--Penidente este no se usa aun, usar en tablas de detalles-->
