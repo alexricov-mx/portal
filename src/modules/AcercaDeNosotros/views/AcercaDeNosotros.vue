@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-    import collageImage from '@/assets/colageANosotros.png'
+    import collageImage from '../assets/colageANosotros.png'
 </script>
 
 <template>
@@ -34,7 +34,7 @@
 
 <style scoped>
 .titulo {
-  color: #CE132D;
-  font-family: "Roboto", "Verdana", sans-serif;
+  color: var(--color-red-empresarial);
+  font-family: var(--font-title);
 }
 </style>

@@ -1,13 +1,10 @@
 <script lang="ts" setup>
 import { ref, computed } from 'vue'
-import { datosDurosPrueba } from '../__tests__/hardCode'
+import type { DocFechaItem } from '../types/types';
 
 const props = defineProps<{
-  dataKey: 'dessertDoc1' | 'dessertDoc2' | 'dessertDoc3'
+  items: DocFechaItem[]
 }>()
-
-const dataMap = datosDurosPrueba()
-const rawData = dataMap[props.dataKey]
 
 const search = ref('')
 const sortBy = ref<'file' | 'date'>('file')     
@@ -15,9 +12,9 @@ const sortDesc = ref(false)
 
 // orden y filtro
 const filteredAndSorted = computed(() => {
-  let result = [...rawData.value]
+  let result = [...props.items]
 
-  // Búsqueda
+  // Busqueda
   if (search.value.trim()) {
     const term = search.value.toLowerCase().trim()
     result = result.filter(doc => 
@@ -34,7 +31,9 @@ const filteredAndSorted = computed(() => {
     if (sortBy.value === 'date') {
       const dateA = valA.split('/').reverse().join('')
       const dateB = valB.split('/').reverse().join('')
-      return sortDesc.value ? dateB.localeCompare(dateA) : dateA.localeCompare(dateB)
+      return sortDesc.value 
+        ? dateB.localeCompare(dateA) 
+        : dateA.localeCompare(dateB)
     }
 
     return sortDesc.value 
@@ -113,7 +112,7 @@ const toggleSort = (field: 'file' | 'date') => {
 
 <style scoped>
 th {
-  background-color: #00833E !important;
+  background-color: var(--color-green-empresarial) !important;
   color: white !important;
   font-weight: 600;
   cursor: pointer;

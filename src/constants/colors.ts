@@ -11,6 +11,7 @@ export const STATUS_ICONS: Record<string, string> = {
     default: 'mdi-help-circle',
 } as const
 
+//verificar donde estan y cmabiarlos por las variables css
 export const COLORS = {
     green: '#00833E',
     blue: '#1867C0',

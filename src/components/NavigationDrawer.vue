@@ -68,7 +68,7 @@ const navigationItems: NavItem[] = [
     <v-navigation-drawer :width="284" v-model="drawer" permanent>
         <v-list>
             <template v-for="item in navigationItems" :key="item.value">
-                <v-list-item v-if="!item.children" :to="item.path" link :prepend-icon="item.icon" :color="COLORS.green" active-color="COLORS.green">
+                <v-list-item v-if="!item.children" :to="item.path" link :prepend-icon="item.icon" :color="'#00833E'">
                     <v-list-item-title class="text-subtitle-2">{{ item.title }}</v-list-item-title>
                 </v-list-item> <!--lista de items-->
 

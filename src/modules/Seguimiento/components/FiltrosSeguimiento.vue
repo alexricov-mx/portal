@@ -1,10 +1,12 @@
 <script lang="ts" setup>
+import type { ActiveChip, FilterGroup, FiltersState } from '../types/types';
+
 
   const props = defineProps<{
-    filterGroups: any[]
-    selected: any
+    filterGroups: FilterGroup[]
+    selected: FiltersState
     panelOpen: boolean
-    activeChips: any[]
+    activeChips: ActiveChip[]
     hasActiveFilters: boolean
     toggleChip: (groupKey: string, chip: string) => void
     removeChip: (groupKey: string) => void
@@ -48,7 +50,7 @@
         <v-chip
           v-for="item in activeChips"
           :key="`${item.groupKey}-${item.chip}`"
-          color="#00833E"
+          color="var(--color-green-empresarial)"
           variant="elevated"
           size="small"
           closable
@@ -115,7 +117,7 @@
                     <v-icon
                       size="16"
                       class="ml-1"
-                      :color="selected[group.key] === chip ? 'white' : '#00833E'"
+                      :color="selected[group.key] === chip ? 'white' : 'var(--color-green-empresarial)'"
                     >
                       {{
                         selected[group.key] === chip

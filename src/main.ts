@@ -12,7 +12,7 @@ import * as directives from 'vuetify/directives'
 import '@mdi/font/css/materialdesignicons.css'
 
 // CSS personalizado después de Vuetify
-import './assets/main.css'
+import './shared/main.css'
 import { es } from 'vuetify/locale'
 
 const vuetify = createVuetify({

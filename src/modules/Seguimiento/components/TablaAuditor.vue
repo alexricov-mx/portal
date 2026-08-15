@@ -1,7 +1,9 @@
 <script lang="ts" setup>
-import { datosDurosPrueba } from '../__tests__/hardCode'
+import type { AuditorItem } from '../types/types';
 
-const { deputyAuditorExt } = datosDurosPrueba()
+defineProps<{
+  items: AuditorItem[]
+}>()
 </script>
 
 <template>
@@ -17,8 +19,10 @@ const { deputyAuditorExt } = datosDurosPrueba()
           </tr>
         </thead>
         <tbody>
-          <tr v-for="item in deputyAuditorExt" :key="item.deputy">
-            <td class="font-weight-medium align-top">{{ item.deputy }}</td>
+          <tr v-for="item in items" :key="item.deputy">
+            <td class="font-weight-medium align-top">
+              {{ item.deputy }}
+            </td>
             
             <td class="text-center align-top">
               <div v-for="(year, i) in item.year" :key="i" class="mb-1">
@@ -40,7 +44,7 @@ const { deputyAuditorExt } = datosDurosPrueba()
 
 <style scoped>
 .custom-table th {
-  background-color: #00833E !important;
+  background-color: var(--color-green-empresarial) !important;
   color: white !important;
   font-weight: 600;
   padding: 16px !important;

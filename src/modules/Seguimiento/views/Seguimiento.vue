@@ -1,7 +1,5 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
 import { useSeguimiento } from '../composables/useSeguimiento'
-
 import SeguimientoFilters from '../components/FiltrosSeguimiento.vue'
 import TablaSeguimiento from '../components/TablaSeguimiento.vue'
 
@@ -12,24 +10,19 @@ const {
   activeChips,
   hasActiveFilters,
   loading,
-  filteredDesserts,
+  filteredFiliales,
   toggleChip,
   removeChip,
   clearAll,
 } = useSeguimiento()
 
-const selectedItem = ref<any>(null)
-
-const handleSelect = (item: any) => {
-  selectedItem.value = item
-}
 
 </script>
 
 <template>
   <v-container>
     <v-row justify="center" class="mt-8">
-      <v-col cols="14" md="11">
+      <v-col cols="12" md="11">
         <h1 class="text-h4 mb-6 text-center titulo" >Módulo de seguimiento</h1>
 
         <SeguimientoFilters 
@@ -46,7 +39,7 @@ const handleSelect = (item: any) => {
         
         <v-card elevation="1" rounded="lg">
           <TablaSeguimiento
-            :filteredDesserts="filteredDesserts"
+            :filteredFiliales="filteredFiliales"
             :loading="loading"
           />
         </v-card>
@@ -57,7 +50,7 @@ const handleSelect = (item: any) => {
 
 <style scoped>
 .titulo {
-  color: #CE132D;
-  font-family: "Roboto", "Verdana", sans-serif;
+  color: var(--color-red-empresarial);
+  font-family: var(--font-title);
 }
 </style>

@@ -1,52 +1,37 @@
 <script lang="ts" setup>
-import { useRoute, useRouter } from 'vue-router'
-import { ref, onMounted } from 'vue'
-import { datosDurosPrueba } from '../__tests__/hardCode'   
+import { useRouter } from 'vue-router'
+import { useFilialDetalle } from '../composables/useFilialDetalle.ts';
 import TablaDocFecha from '../components/TablaDocFecha.vue'
 import TablaConsejo from '../components/TablaConsejo.vue'
 import TablaAuditor from '../components/TablaAuditor.vue'
 
-
-const route = useRoute()
 const router = useRouter()
-
-const filial = ref<any>(null)
-const loading = ref(true)
-
-onMounted(async () => {
-  loading.value = true
-
-  const { desserts: allDesserts } = datosDurosPrueba()
-  const branchName = route.params.branch as string
-
-  filial.value = allDesserts.value.find(item => item.branch === branchName)
-
-  loading.value = false
-})
-
-// scroll
-const scrollToSection = (id: string) => {
-  const element = document.getElementById(id)
-  if (element) {
-    element.scrollIntoView({ behavior: 'smooth' })//suave
-  }
-}
+const { 
+  filial,
+  loading,
+  deputyAuditorExt, 
+  agentCouncil,
+  dessertDoc1,
+  dessertDoc2,
+  dessertDoc3,
+  scrollToSection, 
+} = useFilialDetalle()
 </script>
 
 <template>
   <v-container>
     <!-- Botón Volver -->
     <v-btn
-      color="#00833E"
+      color="var(--color-green-empresarial)"
       variant="outlined"
-      @click="router.go(-1)"
       class="mb-4"
+      @click="router.go(-1)"
     >
       ← Volver a Filiales
     </v-btn>
 
     <v-row justify="center">
-      <v-col cols="12" md="12">
+      <v-col cols="12">
 
         <!-- Loading -->
         <v-skeleton-loader v-if="loading" type="card" height="450px" />
@@ -124,7 +109,7 @@ const scrollToSection = (id: string) => {
                   <h3 class="mb-4">Representante y miembros del consejo</h3>
 
                   <v-card-text>
-                    <TablaConsejo/>
+                    <TablaConsejo :items="agentCouncil"/>
                   </v-card-text>
                   
                 </div>
@@ -134,7 +119,7 @@ const scrollToSection = (id: string) => {
                   <h3 class="mb-4">Comisario y Auditor externo</h3>
 
                   <v-card-text>
-                    <TablaAuditor/>
+                    <TablaAuditor :items="deputyAuditorExt"/>
                   </v-card-text>
                   
                 </div>
@@ -143,7 +128,7 @@ const scrollToSection = (id: string) => {
                   <h3 class="mb-4">Asambleas de Accionistas</h3>
 
                   <v-card-text>
-                    <TablaDocFecha data-key="dessertDoc1"/>
+                    <TablaDocFecha :items="dessertDoc1"/>
                   </v-card-text>
                   
                 </div>
@@ -152,7 +137,7 @@ const scrollToSection = (id: string) => {
                   <h3 class="mb-4">Consejos de Administracion</h3>
 
                   <v-card-text>
-                    <TablaDocFecha data-key="dessertDoc2"/>
+                    <TablaDocFecha :items="dessertDoc2"/>
                   </v-card-text>
                   
                 </div>
@@ -162,7 +147,7 @@ const scrollToSection = (id: string) => {
                   <h3 class="mb-4">Informes y Reportes</h3>
 
                   <v-card-text>
-                    <TablaDocFecha data-key="dessertDoc3"/>
+                    <TablaDocFecha :items="dessertDoc3"/>
                   </v-card-text>
                   
                 </div>
@@ -206,17 +191,13 @@ const scrollToSection = (id: string) => {
   font-size: 90%;
 }
 
-.red {
-  color: #CE132D;
-}
-
-.green {
-  color: #00833E;
-}
-
 .titulo {
-  color: #CE132D;
-  font-family: "Roboto", "Verdana", sans-serif;
+  color: var(--color-red-empresarial);
+  font-family: var(--font-title);
+}
+
+.text.primary {
+  color: var(--color-red-empresarial)
 }
 
 </style>

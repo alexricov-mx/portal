@@ -1,12 +1,13 @@
 <script lang="ts" setup>
 import { useRouter } from 'vue-router';
+import type { FilialItem } from '../types/types';
 
-const router = useRouter();
-
-defineProps<{
-  filteredDesserts: any[]
+const porps = defineProps<{
+  filteredFiliales: FilialItem[]
   loading: boolean
 }>()
+
+const router = useRouter();
 
 const emit = defineEmits<{
   (e: 'select', item: any): void
@@ -15,14 +16,13 @@ const emit = defineEmits<{
 const goToDetail = (item: any) => {
   router.push(`/seguimiento/${encodeURIComponent(item.branch)}`)
 }
-
 </script>
 
 <template>
   <v-card elevation="2" rounded="lg">
     <v-card-text>
 
-      <!-- vista de craga de la tbala donde uso loading para darle el aspepco personalizado entes de qu ecagrue bien la tabla -->
+      <!-- Skeleton carga-->
       <v-skeleton-loader v-if="loading" height="400px">
         <v-table fixed-header height="400px">
           <thead>
@@ -56,16 +56,37 @@ const goToDetail = (item: any) => {
         </thead>
         <tbody>
           <tr 
-            v-for="item in filteredDesserts" 
+            v-for="item in filteredFiliales" 
             :key="item.branch"
             class="cursor-pointer"
             @click="goToDetail(item)"
           >
             <td>{{ item.branch }}</td>
-            <td class="text-center"><v-chip class="green">{{ item.businessLine }}</v-chip></td>
+           <!-- <td class="text-center"><v-chip class="green">{{ item.businessLine }}</v-chip></td>
             <td class="text-center"><v-chip class="red">{{ item.type }}</v-chip></td>
             <td class="text-center"><v-chip class="green">{{ item.participation }}</v-chip></td>
             <td class="text-center"><v-chip class="red">{{ item.activity }}</v-chip></td>
+            <td class="text-center">{{ item.date }}</td>-->
+            <td class="text-center">
+              <v-chip size="small" variant="tonal" color="green">
+                {{ item.businessLine }}
+              </v-chip>
+            </td>
+            <td class="text-center">
+              <v-chip size="small" variant="tonal" color="red">
+                {{ item.type }}
+              </v-chip>
+            </td>
+            <td class="text-center">
+              <v-chip size="small" variant="tonal" color="green">
+                {{ item.participation }}
+              </v-chip>
+            </td>
+            <td class="text-center">
+              <v-chip size="small" variant="tonal" color="red">
+                {{ item.activity }}
+              </v-chip>
+            </td>
             <td class="text-center">{{ item.date }}</td>
           </tr>
         </tbody>
@@ -79,16 +100,20 @@ tr:hover {
   background-color: rgba(0, 0, 0, 0.03) !important;
 }
 
-.v-table >>> th {
-  background-color: #00833E !important;
+.v-table :deep(th) {
+  background-color: var(--color-green-empresarial) !important;
   color: white !important;
 }
 
 .red {
-  color: #CE132D;
+  color: var(--color-red-empresarial);
 }
 
 .green {
-  color: #00833E;
+  color: var(--color-green-empresarial);
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
 </style>

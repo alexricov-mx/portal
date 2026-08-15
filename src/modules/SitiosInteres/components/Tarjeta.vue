@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { VTabsWindow, VTabsWindowItem } from 'vuetify/components';
 
 const props = defineProps<{
   image: string
@@ -7,10 +6,10 @@ const props = defineProps<{
   link?: string
 }>()
 
-//revisar por que no jala el link de porps
 const openLink = () => {
-  const target = props.link ?? 'https://www.pemex.com/Paginas/default.aspx'
-  window.open(target, '_blank')
+  if (props.link) {
+    window.open(props.link, '_blank')
+  }
 }
 
 </script>
@@ -23,13 +22,12 @@ const openLink = () => {
     rounded="xl"
     :ripple="true"
     @click="openLink"
-    style="cursor: pointer;"
+    :style="{ cursor: props.link ? 'pointer' : 'default' }"
   >
     <!-- imagen-->
     <v-img
       :src="image"
       height="280"
-      width="250"
       cover
       class="imagen"
     />
@@ -50,8 +48,16 @@ const openLink = () => {
   height: 100%;
 }
 
+.tarjeta:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
 .imagen {
   transition: transform 0.4s ease;
 }
 
+.tarjeta:hover .imagen :deep(img) {
+  transform: scale(1.08);
+}
 </style>

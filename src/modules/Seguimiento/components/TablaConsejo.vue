@@ -1,7 +1,9 @@
 <script lang="ts" setup>
-import { datosDurosPrueba } from '../__tests__/hardCode'
+import type { CouncilItem } from '../types/types'
 
-const { agentCouncil } = datosDurosPrueba()
+defineProps<{
+  items: CouncilItem[]
+}>()
 </script>
 
 <template>
@@ -9,11 +11,12 @@ const { agentCouncil } = datosDurosPrueba()
 
     <v-card-text class="pa-6">
       <div class="org-chart">
-        <!-- para ver el represnetante del consejo -->
+        <!-- Representante del consejo -->
         <div class="representative-box">
           <div class="green-box">
             <strong>REPRESENTANTE</strong>
-            <div class="mt-2">{{ agentCouncil[0]?.agent || 'Nombre Representante' }}</div>
+            <div class="mt-2">
+              {{ items[0]?.agent || 'Nombre Representante' }}</div>
           </div>
         </div>
 
@@ -23,7 +26,7 @@ const { agentCouncil } = datosDurosPrueba()
         <!-- consejores -->
         <div class="council-container">
           <div 
-            v-for="(council, i) in agentCouncil[0]?.council || []" 
+            v-for="(council, i) in items[0]?.council || []" 
             :key="i"
             class="council-box"
           >
@@ -52,7 +55,7 @@ const { agentCouncil } = datosDurosPrueba()
 }
 
 .green-box {
-  background: #00833E;
+  background: var(--color-green-empresarial);
   color: white;
   padding: 18px 32px;
   border-radius: 12px;
@@ -75,7 +78,7 @@ const { agentCouncil } = datosDurosPrueba()
 .connector {
   width: 4px;
   height: 40px;
-  background: #00833E;
+  background: var(--color-green-empresarial);
   margin: 8px 0;
 }
 
